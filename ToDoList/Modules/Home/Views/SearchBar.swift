@@ -9,9 +9,11 @@ import SwiftUI
 
 struct SearchBar: View {
     
+    //MARK: Binding
     @Binding
     var textField: String
     
+    //MARK: Body
     var body: some View {
         HStack {
             searchButton
@@ -25,6 +27,7 @@ struct SearchBar: View {
     }
 }
 
+//MARK: Extensions
 extension SearchBar {
     
     private var searchButton: some View {
