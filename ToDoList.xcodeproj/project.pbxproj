@@ -122,6 +122,10 @@
 		148F8D972E8FE0F900EE0C52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				148F8DA72E9145AE00EE0C52 /* Entity */,
+				148F8DA82E91462C00EE0C52 /* Interactor */,
+				148F8DA92E91463400EE0C52 /* Presenter */,
+				148F8DAA2E91463C00EE0C52 /* Router */,
 				148F8D982E8FE10E00EE0C52 /* Views */,
 			);
 			path = Home;
@@ -150,6 +154,34 @@
 				148F8DA22E9128BF00EE0C52 /* Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		148F8DA72E9145AE00EE0C52 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		148F8DA82E91462C00EE0C52 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		148F8DA92E91463400EE0C52 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		148F8DAA2E91463C00EE0C52 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
