@@ -8,11 +8,60 @@
 import SwiftUI
 
 struct SearchBar: View {
+    
+    @Binding
+    var textField: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            searchButton
+            searchBar
+        }
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.theme.gray)
+        )
+    }
+}
+
+extension SearchBar {
+    
+    private var searchButton: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "magnifyingglass")
+                .font(.title2)
+                .foregroundStyle(Color.theme.secondaryText)
+        }
+    }
+    
+    private var searchBar: some View {
+        ZStack(alignment: .leading) {
+            if textField.isEmpty {
+                Text("Search")
+                    .font(.title2)
+                    .foregroundStyle(Color.theme.secondaryText.opacity(0.6))
+                    .padding(.leading, 2)
+            }
+            TextField("", text: $textField)
+                .font(.title2)
+                .foregroundStyle(Color.theme.secondaryText)
+                .textInputAutocapitalization(.never)
+                .disableAutocorrection(true)
+        }
+        .overlay(
+            Image(systemName: "microphone.fill")
+                .font(.title2)
+                .padding()
+                .offset(x: 10)
+                .foregroundStyle(Color.theme.secondaryText)
+            , alignment: .trailing
+        )
     }
 }
 
 #Preview {
-    SearchBar()
+    SearchBar(textField: .constant(""))
 }
