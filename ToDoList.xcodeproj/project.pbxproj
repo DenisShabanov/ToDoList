@@ -12,6 +12,8 @@
 		148F8D9C2E8FE64800EE0C52 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8D9B2E8FE64800EE0C52 /* SearchBar.swift */; };
 		148F8D9E2E8FE67100EE0C52 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8D9D2E8FE67100EE0C52 /* HomeView.swift */; };
 		148F8DA32E9128C300EE0C52 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DA22E9128BF00EE0C52 /* Color.swift */; };
+		148F8DAC2E9148D400EE0C52 /* NoteFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DAB2E9148D400EE0C52 /* NoteFieldView.swift */; };
+		148F8DAE2E92861D00EE0C52 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DAD2E92861D00EE0C52 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		148F8D9B2E8FE64800EE0C52 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		148F8D9D2E8FE67100EE0C52 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		148F8DA22E9128BF00EE0C52 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		148F8DAB2E9148D400EE0C52 /* NoteFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFieldView.swift; sourceTree = "<group>"; };
+		148F8DAD2E92861D00EE0C52 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -136,6 +140,7 @@
 			children = (
 				148F8D9D2E8FE67100EE0C52 /* HomeView.swift */,
 				148F8D9B2E8FE64800EE0C52 /* SearchBar.swift */,
+				148F8DAB2E9148D400EE0C52 /* NoteFieldView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 		148F8DA72E9145AE00EE0C52 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				148F8DAD2E92861D00EE0C52 /* Note.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -330,6 +336,8 @@
 				148F8DA32E9128C300EE0C52 /* Color.swift in Sources */,
 				148F8D952E8FDA6F00EE0C52 /* ToDoListApp.swift in Sources */,
 				148F8D9C2E8FE64800EE0C52 /* SearchBar.swift in Sources */,
+				148F8DAC2E9148D400EE0C52 /* NoteFieldView.swift in Sources */,
+				148F8DAE2E92861D00EE0C52 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,9 @@ struct HomeView: View {
     @State
     var textField: String = ""
     
+    @State
+    var isSelected: Bool = false
+    
     //MARK: Body
     var body: some View {
         NavigationStack {
@@ -28,19 +31,30 @@ struct HomeView: View {
     }
 }
 
-//MARK: Extensions
+//MARK: Layout
 extension HomeView {
     
     private var serchBarAndContent: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 30) {
             Text("Задачи")
                 .font(.largeTitle)
                 .foregroundStyle(Color.theme.accent)
                 .fontWeight(.bold)
             
             SearchBar(textField: $textField)
-            ScrollView{
-                
+            ScrollView {
+                ForEach(0..<10, id: \.self) { index in
+                    VStack(spacing: 10) {
+                        NoteFieldView(isSelected: $isSelected)
+                        if index < 9 {
+                            Divider()
+                                .overlay {
+                                    Color.theme.accent
+                                }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
             }
         }
         .padding(.horizontal, 20)
@@ -60,7 +74,7 @@ extension HomeView {
                     .font(.title2)
                     .foregroundStyle(Color.theme.yellow)
             }
-
+            
         }
         .padding(.horizontal)
         .frame(maxWidth: .infinity)
@@ -71,5 +85,5 @@ extension HomeView {
 }
 
 #Preview {
-    HomeView()
+    HomeView(isSelected: true)
 }

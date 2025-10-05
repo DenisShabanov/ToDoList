@@ -27,7 +27,7 @@ struct SearchBar: View {
     }
 }
 
-//MARK: Extensions
+//MARK: Layout
 extension SearchBar {
     
     private var searchButton: some View {
