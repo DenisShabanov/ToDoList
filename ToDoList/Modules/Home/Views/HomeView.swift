@@ -7,14 +7,25 @@
 
 import SwiftUI
 
+protocol HomeViewProtocol: AnyObject {
+    func showNotes(_ notes: [Note])
+    func showError(_ message: String)
+}
+
 struct HomeView: View {
     
     //MARK: State
     @State
     var textField: String = ""
     
-    @State
-    var isSelected: Bool = false
+    @StateObject private var adapter = HomeViewAdapter()
+    private let presenter: HomePresenter
+    
+    //MARK: Init
+    init(adapter: HomeViewAdapter, presenter: HomePresenter) {
+        _adapter = StateObject(wrappedValue: adapter)
+        self.presenter = presenter
+    }
     
     //MARK: Body
     var body: some View {
@@ -27,8 +38,12 @@ struct HomeView: View {
             .safeAreaInset(edge: .bottom) {
                 bottomBar
             }
+            .onAppear {
+                presenter.viewDidLoad()
+            }
         }
     }
+    
 }
 
 //MARK: Layout
@@ -43,10 +58,21 @@ extension HomeView {
             
             SearchBar(textField: $textField)
             ScrollView {
-                ForEach(0..<10, id: \.self) { index in
+                ForEach(Array(adapter.notes.enumerated()), id: \.element.id) { index, note in
                     VStack(spacing: 10) {
-                        NoteFieldView(isSelected: $isSelected)
-                        if index < 9 {
+                        NoteFieldView(
+                            isSelected: Binding(
+                                get: { note.completed },
+                                set: { newValue in
+                                    adapter.notes[index].completed = newValue
+                                }
+                            ),
+                            title: "\(note.id)",
+                            subtitle: note.todo,
+                            date: Date()
+                        )
+                        
+                        if index < adapter.notes.count - 1 {
                             Divider()
                                 .overlay {
                                     Color.theme.accent
@@ -63,7 +89,7 @@ extension HomeView {
     private var bottomBar: some View {
         HStack {
             Spacer()
-            Text("0 Задач")
+            Text("\(adapter.notes.count) Задач")
                 .font(.headline)
                 .foregroundStyle(Color.theme.accent)
             Spacer()
@@ -74,7 +100,6 @@ extension HomeView {
                     .font(.title2)
                     .foregroundStyle(Color.theme.yellow)
             }
-            
         }
         .padding(.horizontal)
         .frame(maxWidth: .infinity)
@@ -85,5 +110,5 @@ extension HomeView {
 }
 
 #Preview {
-    HomeView(isSelected: true)
+    DeveloperPreview.shared.homeView()
 }

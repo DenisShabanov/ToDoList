@@ -13,6 +13,11 @@ struct NoteFieldView: View {
     @Binding
     var isSelected : Bool
     
+    //MARK: Properties
+    let title: String
+    let subtitle: String
+    let date: Date
+    
     //MARK: Body
     var body: some View {
         HStack(alignment: .top){
@@ -49,17 +54,17 @@ extension NoteFieldView {
     
     private var noteInfo: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Title")
+            Text(title)
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundStyle(isSelected ? Color.theme.secondaryText :Color.theme.accent)
                 .strikethrough(isSelected, color: Color.theme.secondaryText)
-            Text("Description")
+            Text(subtitle)
                 .font(.headline)
                 .fontWeight(.medium)
                 .foregroundStyle(isSelected ? Color.theme.secondaryText :Color.theme.accent)
                 .lineLimit(2)
-            Text("Date")
+            Text("\(date)")
                 .font(.callout)
                 .foregroundStyle(Color.theme.secondaryText)
         }
@@ -68,5 +73,5 @@ extension NoteFieldView {
 }
 
 #Preview {
-    NoteFieldView(isSelected: .constant(true))
+    NoteFieldView(isSelected: .constant(false), title: "", subtitle: "", date: Date())
 }
