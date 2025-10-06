@@ -7,16 +7,14 @@
 
 import Foundation
 
-struct Note: Identifiable {
+struct TodoResponse: Decodable {
+    let todos: [Note]
+}
+
+struct Note: Identifiable, Decodable {
     let id: Int
     let todo: String
-    let completed: Bool
-    let description: String
-    
-    init(id: Int, todo: String, completed: Bool, description: String) {
-        self.id = id
-        self.todo = todo
-        self.completed = completed
-        self.description = ""
-    }
+    var completed: Bool
+    let userId: Int?
+    let createdAt: String?
 }

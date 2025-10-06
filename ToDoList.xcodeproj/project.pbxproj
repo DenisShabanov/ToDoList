@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		143BA4902E93A0830040739F /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA48F2E93A0830040739F /* HomeAssembly.swift */; };
 		148F8D932E8FDA6E00EE0C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 148F8D8F2E8FDA6E00EE0C52 /* Assets.xcassets */; };
 		148F8D952E8FDA6F00EE0C52 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8D912E8FDA6E00EE0C52 /* ToDoListApp.swift */; };
 		148F8D9C2E8FE64800EE0C52 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8D9B2E8FE64800EE0C52 /* SearchBar.swift */; };
@@ -14,6 +15,16 @@
 		148F8DA32E9128C300EE0C52 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DA22E9128BF00EE0C52 /* Color.swift */; };
 		148F8DAC2E9148D400EE0C52 /* NoteFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DAB2E9148D400EE0C52 /* NoteFieldView.swift */; };
 		148F8DAE2E92861D00EE0C52 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DAD2E92861D00EE0C52 /* Note.swift */; };
+		148F8DB32E928F8E00EE0C52 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DB22E928F8E00EE0C52 /* NetworkingManager.swift */; };
+		148F8DB62E9293CF00EE0C52 /* NetworkingManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DB52E9293CE00EE0C52 /* NetworkingManagerProtocol.swift */; };
+		148F8DB82E92942300EE0C52 /* NotesAPIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DB72E92942300EE0C52 /* NotesAPIServiceProtocol.swift */; };
+		148F8DBA2E92947300EE0C52 /* NotesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DB92E92947300EE0C52 /* NotesAPIService.swift */; };
+		148F8DBC2E92A20200EE0C52 /* HomeInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DBB2E92A20200EE0C52 /* HomeInteractorProtocol.swift */; };
+		148F8DBE2E92A24D00EE0C52 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DBD2E92A24D00EE0C52 /* HomeInteractor.swift */; };
+		148F8DC02E92A55600EE0C52 /* HomePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DBF2E92A55600EE0C52 /* HomePresenterProtocol.swift */; };
+		148F8DC22E92A5D100EE0C52 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DC12E92A5D100EE0C52 /* HomePresenter.swift */; };
+		148F8DC42E92A86100EE0C52 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DC32E92A86100EE0C52 /* DeveloperPreview.swift */; };
+		148F8DC62E92E54D00EE0C52 /* HomeViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8DC52E92E54D00EE0C52 /* HomeViewAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		143BA48F2E93A0830040739F /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		148F8D652E8FDA3E00EE0C52 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		148F8D722E8FDA4200EE0C52 /* ToDoListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		148F8D7C2E8FDA4200EE0C52 /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +56,16 @@
 		148F8DA22E9128BF00EE0C52 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		148F8DAB2E9148D400EE0C52 /* NoteFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFieldView.swift; sourceTree = "<group>"; };
 		148F8DAD2E92861D00EE0C52 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		148F8DB22E928F8E00EE0C52 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		148F8DB52E9293CE00EE0C52 /* NetworkingManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerProtocol.swift; sourceTree = "<group>"; };
+		148F8DB72E92942300EE0C52 /* NotesAPIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAPIServiceProtocol.swift; sourceTree = "<group>"; };
+		148F8DB92E92947300EE0C52 /* NotesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAPIService.swift; sourceTree = "<group>"; };
+		148F8DBB2E92A20200EE0C52 /* HomeInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractorProtocol.swift; sourceTree = "<group>"; };
+		148F8DBD2E92A24D00EE0C52 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		148F8DBF2E92A55600EE0C52 /* HomePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterProtocol.swift; sourceTree = "<group>"; };
+		148F8DC12E92A5D100EE0C52 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		148F8DC32E92A86100EE0C52 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
+		148F8DC52E92E54D00EE0C52 /* HomeViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -109,6 +131,7 @@
 			children = (
 				148F8D962E8FE05800EE0C52 /* Modules */,
 				148F8D9F2E91289A00EE0C52 /* Shared */,
+				148F8DAF2E928F4900EE0C52 /* Services */,
 				148F8D8F2E8FDA6E00EE0C52 /* Assets.xcassets */,
 				148F8D912E8FDA6E00EE0C52 /* ToDoListApp.swift */,
 			);
@@ -131,6 +154,7 @@
 				148F8DA92E91463400EE0C52 /* Presenter */,
 				148F8DAA2E91463C00EE0C52 /* Router */,
 				148F8D982E8FE10E00EE0C52 /* Views */,
+				143BA48F2E93A0830040739F /* HomeAssembly.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -141,6 +165,7 @@
 				148F8D9D2E8FE67100EE0C52 /* HomeView.swift */,
 				148F8D9B2E8FE64800EE0C52 /* SearchBar.swift */,
 				148F8DAB2E9148D400EE0C52 /* NoteFieldView.swift */,
+				148F8DC52E92E54D00EE0C52 /* HomeViewAdapter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				148F8DA22E9128BF00EE0C52 /* Color.swift */,
+				148F8DC32E92A86100EE0C52 /* DeveloperPreview.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -172,6 +198,8 @@
 		148F8DA82E91462C00EE0C52 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				148F8DBB2E92A20200EE0C52 /* HomeInteractorProtocol.swift */,
+				148F8DBD2E92A24D00EE0C52 /* HomeInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -179,6 +207,8 @@
 		148F8DA92E91463400EE0C52 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				148F8DBF2E92A55600EE0C52 /* HomePresenterProtocol.swift */,
+				148F8DC12E92A5D100EE0C52 /* HomePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -188,6 +218,33 @@
 			children = (
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		148F8DAF2E928F4900EE0C52 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				148F8DB12E928F7E00EE0C52 /* Networking */,
+				148F8DB42E92938400EE0C52 /* API */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		148F8DB12E928F7E00EE0C52 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				148F8DB52E9293CE00EE0C52 /* NetworkingManagerProtocol.swift */,
+				148F8DB22E928F8E00EE0C52 /* NetworkingManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		148F8DB42E92938400EE0C52 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				148F8DB72E92942300EE0C52 /* NotesAPIServiceProtocol.swift */,
+				148F8DB92E92947300EE0C52 /* NotesAPIService.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,12 +389,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148F8DBA2E92947300EE0C52 /* NotesAPIService.swift in Sources */,
 				148F8D9E2E8FE67100EE0C52 /* HomeView.swift in Sources */,
+				148F8DC02E92A55600EE0C52 /* HomePresenterProtocol.swift in Sources */,
 				148F8DA32E9128C300EE0C52 /* Color.swift in Sources */,
+				148F8DBE2E92A24D00EE0C52 /* HomeInteractor.swift in Sources */,
+				148F8DC62E92E54D00EE0C52 /* HomeViewAdapter.swift in Sources */,
+				143BA4902E93A0830040739F /* HomeAssembly.swift in Sources */,
+				148F8DC42E92A86100EE0C52 /* DeveloperPreview.swift in Sources */,
 				148F8D952E8FDA6F00EE0C52 /* ToDoListApp.swift in Sources */,
 				148F8D9C2E8FE64800EE0C52 /* SearchBar.swift in Sources */,
+				148F8DC22E92A5D100EE0C52 /* HomePresenter.swift in Sources */,
 				148F8DAC2E9148D400EE0C52 /* NoteFieldView.swift in Sources */,
+				148F8DB82E92942300EE0C52 /* NotesAPIServiceProtocol.swift in Sources */,
 				148F8DAE2E92861D00EE0C52 /* Note.swift in Sources */,
+				148F8DBC2E92A20200EE0C52 /* HomeInteractorProtocol.swift in Sources */,
+				148F8DB32E928F8E00EE0C52 /* NetworkingManager.swift in Sources */,
+				148F8DB62E9293CF00EE0C52 /* NetworkingManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +580,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.myorganization.ToDoList;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DenisShabanov.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -544,7 +612,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.myorganization.ToDoList;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DenisShabanov.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
