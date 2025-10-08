@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		143BA4902E93A0830040739F /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA48F2E93A0830040739F /* HomeAssembly.swift */; };
+		143BA4A12E93BBF00040739F /* CoreDataNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 143BA49F2E93BBF00040739F /* CoreDataNote.xcdatamodeld */; };
+		143BA4A42E93BDD80040739F /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA4A32E93BDD80040739F /* CoreDataService.swift */; };
+		143BA4A72E93BEE40040739F /* MappData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA4A62E93BEE40040739F /* MappData.swift */; };
+		143BA4A92E93EDA00040739F /* HomeRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA4A82E93EDA00040739F /* HomeRouterProtocol.swift */; };
+		143BA4AB2E93EDB10040739F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA4AA2E93EDB10040739F /* HomeRouter.swift */; };
+		143BA4AD2E93F1490040739F /* EditNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA4AC2E93F1490040739F /* EditNoteView.swift */; };
+		143BA4AF2E94FE1A0040739F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA4AE2E94FE180040739F /* Date.swift */; };
+		143BA4B12E9511C80040739F /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143BA4B02E9511C80040739F /* AddNoteView.swift */; };
 		148F8D932E8FDA6E00EE0C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 148F8D8F2E8FDA6E00EE0C52 /* Assets.xcassets */; };
 		148F8D952E8FDA6F00EE0C52 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8D912E8FDA6E00EE0C52 /* ToDoListApp.swift */; };
 		148F8D9C2E8FE64800EE0C52 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F8D9B2E8FE64800EE0C52 /* SearchBar.swift */; };
@@ -46,6 +54,14 @@
 
 /* Begin PBXFileReference section */
 		143BA48F2E93A0830040739F /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
+		143BA4A02E93BBF00040739F /* CoreDataNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataNote.xcdatamodel; sourceTree = "<group>"; };
+		143BA4A32E93BDD80040739F /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		143BA4A62E93BEE40040739F /* MappData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappData.swift; sourceTree = "<group>"; };
+		143BA4A82E93EDA00040739F /* HomeRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouterProtocol.swift; sourceTree = "<group>"; };
+		143BA4AA2E93EDB10040739F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		143BA4AC2E93F1490040739F /* EditNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteView.swift; sourceTree = "<group>"; };
+		143BA4AE2E94FE180040739F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		143BA4B02E9511C80040739F /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		148F8D652E8FDA3E00EE0C52 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		148F8D722E8FDA4200EE0C52 /* ToDoListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		148F8D7C2E8FDA4200EE0C52 /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +122,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		143BA49E2E93B51F0040739F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				143BA49F2E93BBF00040739F /* CoreDataNote.xcdatamodeld */,
+				143BA4A62E93BEE40040739F /* MappData.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		143BA4A22E93BDA20040739F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				143BA4A32E93BDD80040739F /* CoreDataService.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		143BA4B22E952E1F0040739F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				148F8D9B2E8FE64800EE0C52 /* SearchBar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		148F8D5C2E8FDA3D00EE0C52 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				148F8D962E8FE05800EE0C52 /* Modules */,
+				143BA49E2E93B51F0040739F /* CoreData */,
 				148F8D9F2E91289A00EE0C52 /* Shared */,
 				148F8DAF2E928F4900EE0C52 /* Services */,
 				148F8D8F2E8FDA6E00EE0C52 /* Assets.xcassets */,
@@ -163,9 +205,10 @@
 			isa = PBXGroup;
 			children = (
 				148F8D9D2E8FE67100EE0C52 /* HomeView.swift */,
-				148F8D9B2E8FE64800EE0C52 /* SearchBar.swift */,
 				148F8DAB2E9148D400EE0C52 /* NoteFieldView.swift */,
 				148F8DC52E92E54D00EE0C52 /* HomeViewAdapter.swift */,
+				143BA4AC2E93F1490040739F /* EditNoteView.swift */,
+				143BA4B02E9511C80040739F /* AddNoteView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +216,7 @@
 		148F8D9F2E91289A00EE0C52 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				143BA4B22E952E1F0040739F /* Components */,
 				148F8DA02E9128AC00EE0C52 /* Extensions */,
 			);
 			path = Shared;
@@ -181,6 +225,7 @@
 		148F8DA02E9128AC00EE0C52 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				143BA4AE2E94FE180040739F /* Date.swift */,
 				148F8DA22E9128BF00EE0C52 /* Color.swift */,
 				148F8DC32E92A86100EE0C52 /* DeveloperPreview.swift */,
 			);
@@ -216,6 +261,8 @@
 		148F8DAA2E91463C00EE0C52 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				143BA4A82E93EDA00040739F /* HomeRouterProtocol.swift */,
+				143BA4AA2E93EDB10040739F /* HomeRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -223,6 +270,7 @@
 		148F8DAF2E928F4900EE0C52 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				143BA4A22E93BDA20040739F /* CoreData */,
 				148F8DB12E928F7E00EE0C52 /* Networking */,
 				148F8DB42E92938400EE0C52 /* API */,
 			);
@@ -393,19 +441,27 @@
 				148F8D9E2E8FE67100EE0C52 /* HomeView.swift in Sources */,
 				148F8DC02E92A55600EE0C52 /* HomePresenterProtocol.swift in Sources */,
 				148F8DA32E9128C300EE0C52 /* Color.swift in Sources */,
+				143BA4B12E9511C80040739F /* AddNoteView.swift in Sources */,
 				148F8DBE2E92A24D00EE0C52 /* HomeInteractor.swift in Sources */,
 				148F8DC62E92E54D00EE0C52 /* HomeViewAdapter.swift in Sources */,
 				143BA4902E93A0830040739F /* HomeAssembly.swift in Sources */,
 				148F8DC42E92A86100EE0C52 /* DeveloperPreview.swift in Sources */,
+				143BA4A12E93BBF00040739F /* CoreDataNote.xcdatamodeld in Sources */,
 				148F8D952E8FDA6F00EE0C52 /* ToDoListApp.swift in Sources */,
 				148F8D9C2E8FE64800EE0C52 /* SearchBar.swift in Sources */,
 				148F8DC22E92A5D100EE0C52 /* HomePresenter.swift in Sources */,
 				148F8DAC2E9148D400EE0C52 /* NoteFieldView.swift in Sources */,
+				143BA4A72E93BEE40040739F /* MappData.swift in Sources */,
+				143BA4A42E93BDD80040739F /* CoreDataService.swift in Sources */,
 				148F8DB82E92942300EE0C52 /* NotesAPIServiceProtocol.swift in Sources */,
+				143BA4A92E93EDA00040739F /* HomeRouterProtocol.swift in Sources */,
 				148F8DAE2E92861D00EE0C52 /* Note.swift in Sources */,
 				148F8DBC2E92A20200EE0C52 /* HomeInteractorProtocol.swift in Sources */,
+				143BA4AF2E94FE1A0040739F /* Date.swift in Sources */,
 				148F8DB32E928F8E00EE0C52 /* NetworkingManager.swift in Sources */,
 				148F8DB62E9293CF00EE0C52 /* NetworkingManagerProtocol.swift in Sources */,
+				143BA4AD2E93F1490040739F /* EditNoteView.swift in Sources */,
+				143BA4AB2E93EDB10040739F /* HomeRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +804,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		143BA49F2E93BBF00040739F /* CoreDataNote.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				143BA4A02E93BBF00040739F /* CoreDataNote.xcdatamodel */,
+			);
+			currentVersion = 143BA4A02E93BBF00040739F /* CoreDataNote.xcdatamodel */;
+			path = CoreDataNote.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 148F8D5D2E8FDA3E00EE0C52 /* Project object */;
 }

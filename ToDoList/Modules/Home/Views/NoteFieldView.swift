@@ -12,11 +12,18 @@ struct NoteFieldView: View {
     //MARK: Binding
     @Binding
     var isSelected : Bool
+    //MARK: State
+    @State
+    private var showPopover = false
     
     //MARK: Properties
     let title: String
     let subtitle: String
     let date: Date
+    var onTap: () -> Void
+    var onEdit: () -> Void
+    var onShare: () -> Void
+    var onDelete: () -> Void
     
     //MARK: Body
     var body: some View {
@@ -25,6 +32,10 @@ struct NoteFieldView: View {
             noteInfo
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            onTap()
+        }
     }
 }
 
@@ -57,21 +68,63 @@ extension NoteFieldView {
             Text(title)
                 .font(.title2)
                 .fontWeight(.semibold)
-                .foregroundStyle(isSelected ? Color.theme.secondaryText :Color.theme.accent)
+                .foregroundStyle(isSelected ? Color.theme.secondaryText : Color.theme.accent)
                 .strikethrough(isSelected, color: Color.theme.secondaryText)
             Text(subtitle)
                 .font(.headline)
                 .fontWeight(.medium)
-                .foregroundStyle(isSelected ? Color.theme.secondaryText :Color.theme.accent)
+                .foregroundStyle(isSelected ? Color.theme.secondaryText : Color.theme.accent)
                 .lineLimit(2)
-            Text("\(date)")
+            Text(date.dateToString())
                 .font(.callout)
                 .foregroundStyle(Color.theme.secondaryText)
         }
+        .padding(8)
+        .background(Color.clear)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            onTap()
+        }
+        .contextMenu{
+            Group {
+                Button {
+                    onEdit()
+                    showPopover = false
+                } label: {
+                    HStack {
+                        Text("Редактировать")
+                        Spacer()
+                        Image(systemName: "pencil")
+                    }
+                    .padding()
+                    .foregroundStyle(Color.theme.background)
+                }
+                Button {
+                    onShare()
+                    showPopover = false
+                } label: {
+                    HStack {
+                        Text("Поделиться")
+                        Spacer()
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .padding()
+                    .foregroundStyle(Color.theme.background)
+                }
+                Button {
+                    onDelete()
+                    showPopover = false
+                } label: {
+                    Label("Удалить", systemImage: "trash")
+                        .foregroundStyle(Color.theme.red)
+                }
+                .frame(maxWidth: 400)
+            }
+        }
     }
-    
 }
 
+//MARK: Preview
 #Preview {
-    NoteFieldView(isSelected: .constant(false), title: "", subtitle: "", date: Date())
+    NoteFieldView(isSelected: .constant(false), title: "", subtitle: "", date: Date(), onTap: {}, onEdit: {}, onShare: {}, onDelete: {})
 }

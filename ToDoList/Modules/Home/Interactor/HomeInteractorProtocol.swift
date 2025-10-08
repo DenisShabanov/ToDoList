@@ -9,4 +9,7 @@ import Foundation
 
 protocol HomeInteractorProtocol {
     func fetchNotes()
+    func addNote(todo: String)
+    func updateNote(_ note: Note)
+    func deleteNote(_ note: Note)
 }

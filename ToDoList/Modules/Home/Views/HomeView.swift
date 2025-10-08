@@ -18,13 +18,20 @@ struct HomeView: View {
     @State
     var textField: String = ""
     
-    @StateObject private var adapter = HomeViewAdapter()
+    @StateObject
+    private var adapter: HomeViewAdapter
+    
+    //MARK: ObservedObject
+    @ObservedObject
+    private var router: HomeRouter
+    
     private let presenter: HomePresenter
     
     //MARK: Init
-    init(adapter: HomeViewAdapter, presenter: HomePresenter) {
+    init(adapter: HomeViewAdapter, presenter: HomePresenter, router: HomeRouter) {
         _adapter = StateObject(wrappedValue: adapter)
         self.presenter = presenter
+        self.router = router
     }
     
     //MARK: Body
@@ -33,13 +40,27 @@ struct HomeView: View {
             ZStack {
                 Color.theme.background
                     .ignoresSafeArea()
-                serchBarAndContent
+                VStack(spacing: 20) {
+                    serchBarAndHeader
+                    notesList
+                }
+                .padding()
             }
             .safeAreaInset(edge: .bottom) {
                 bottomBar
             }
             .onAppear {
                 presenter.viewDidLoad()
+            }
+            .fullScreenCover(isPresented: $router.showingAddNote) {
+                AddNoteView { newNote in
+                    router.dismiss(note: newNote)
+                }
+            }
+            .fullScreenCover(item: $router.showingEditNote) { note in
+                EditNoteView(note: note) { updatedNote in
+                    router.dismiss(note: updatedNote)
+                }
             }
         }
     }
@@ -49,41 +70,45 @@ struct HomeView: View {
 //MARK: Layout
 extension HomeView {
     
-    private var serchBarAndContent: some View {
-        VStack(alignment: .leading, spacing: 30) {
+    private var serchBarAndHeader: some View {
+        VStack(alignment: .leading) {
             Text("Задачи")
-                .font(.largeTitle)
+                .font(.system(size: 41))
                 .foregroundStyle(Color.theme.accent)
                 .fontWeight(.bold)
             
-            SearchBar(textField: $textField)
-            ScrollView {
-                ForEach(Array(adapter.notes.enumerated()), id: \.element.id) { index, note in
-                    VStack(spacing: 10) {
-                        NoteFieldView(
-                            isSelected: Binding(
-                                get: { note.completed },
-                                set: { newValue in
-                                    adapter.notes[index].completed = newValue
-                                }
-                            ),
-                            title: "\(note.id)",
-                            subtitle: note.todo,
-                            date: Date()
-                        )
-                        
-                        if index < adapter.notes.count - 1 {
-                            Divider()
-                                .overlay {
-                                    Color.theme.accent
-                                }
+            SearchBar(textField: $textField, onSearchTapped:  {
+                presenter.searchNotes(with: textField)
+            })
+        }
+    }
+    
+    private var notesList: some View {
+        ScrollView {
+            ForEach(adapter.notes, id: \.id) { note in
+                VStack(spacing: 10) {
+                    NoteFieldView(isSelected: Binding(
+                        get: { note.completed },
+                        set: { newValue in
+                            presenter.toggleNoteCompleted(note)
                         }
+                    ),
+                    title: "\(note.id)",
+                    subtitle: note.todo,
+                    date: note.createdAt ?? Date(),
+                    onTap: {
+                        presenter.updateNote(note)
+                    }, onEdit: {
+                        presenter.updateNote(note)
+                    }, onShare: {
+                        presenter.share(note: note)
+                    }, onDelete: {
+                        presenter.deleteNote(note)
                     }
-                    .frame(maxWidth: .infinity)
+                    )
                 }
             }
         }
-        .padding(.horizontal, 20)
     }
     
     private var bottomBar: some View {
@@ -94,7 +119,7 @@ extension HomeView {
                 .foregroundStyle(Color.theme.accent)
             Spacer()
             Button {
-                
+                presenter.addNoteTapped()
             } label: {
                 Image(systemName: "square.and.pencil")
                     .font(.title2)
@@ -109,6 +134,7 @@ extension HomeView {
     
 }
 
+//MARK: Preview
 #Preview {
-    DeveloperPreview.shared.homeView()
+    HomeAssembly.build()
 }

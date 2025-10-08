@@ -13,11 +13,13 @@ enum HomeAssembly {
         let adapter = HomeViewAdapter()
         let presenter = HomePresenter()
         let interactor = HomeInteractor()
+        let router = HomeRouter()
         
         presenter.view = adapter
         presenter.interactor = interactor
+        presenter.router = router
         interactor.presenter = presenter
         
-        return HomeView(adapter: adapter, presenter: presenter)
+        return HomeView(adapter: adapter, presenter: presenter, router: router)
     }
 }

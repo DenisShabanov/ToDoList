@@ -14,9 +14,9 @@ final class DeveloperPreview {
 
     var mockNotes: [Note] {
         [
-            Note(id: 1, todo: "Сходить в спортзал", completed: false, userId: 1, createdAt: "25"),
-            Note(id: 2, todo: "Учить SWIFT", completed: true, userId: 1, createdAt: "24"),
-            Note(id: 3, todo: "Встреча с друзьями", completed: false, userId: 2, createdAt: "22")
+            Note(id: 1, todo: "Сходить в спортзал", completed: false, createdAt: Date()),
+            Note(id: 2, todo: "Учить SWIFT", completed: true, createdAt: Date()),
+            Note(id: 3, todo: "Встреча с друзьями", completed: false,  createdAt: Date())
         ]
     }
 
@@ -24,6 +24,7 @@ final class DeveloperPreview {
         let adapter = HomeViewAdapter()
         adapter.notes = mockNotes
         let presenter = HomePresenter()
-        return HomeView(adapter: adapter, presenter: presenter)
+        let router = HomeRouter()
+        return HomeView(adapter: adapter, presenter: presenter, router: router)
     }
 }
