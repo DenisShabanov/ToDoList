@@ -1,5 +1,5 @@
-# DailyQuiz Application
-Проект сделанный в рамках летней школы 2025 от компании Surf </br>
+# TodoList application
+Проект сделанный в рамках технического задания для компании Effective Mobile</br>
 
 ## Технологии, используемые в приложении:
 ![Swift](https://img.shields.io/badge/-Swift-FA7343?logo=swift&logoColor=white&style=for-the-badge)
