@@ -12,6 +12,8 @@ struct SearchBar: View {
     //MARK: Binding
     @Binding
     var textField: String
+    var onSearchChanged: ((String) -> Void)? = nil
+    var onSearchTapped: (() -> Void)? = nil
     
     //MARK: Body
     var body: some View {
@@ -32,7 +34,7 @@ extension SearchBar {
     
     private var searchButton: some View {
         Button {
-            
+            onSearchTapped?()
         } label: {
             Image(systemName: "magnifyingglass")
                 .font(.title2)
@@ -53,6 +55,9 @@ extension SearchBar {
                 .foregroundStyle(Color.theme.secondaryText)
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
+                .onChange(of: textField) { newValue in
+                    onSearchChanged?(newValue)
+                }
         }
         .overlay(
             Image(systemName: "microphone.fill")

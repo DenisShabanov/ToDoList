@@ -13,8 +13,14 @@ struct TodoResponse: Decodable {
 
 struct Note: Identifiable, Decodable {
     let id: Int
-    let todo: String
+    var todo: String
     var completed: Bool
-    let userId: Int?
-    let createdAt: String?
+    var createdAt: Date?
+    
+    init(id: Int, todo: String, completed: Bool, createdAt: Date? = nil) {
+        self.id = id
+        self.todo = todo
+        self.completed = completed
+        self.createdAt = createdAt
+    }
 }
