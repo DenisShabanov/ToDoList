@@ -18,7 +18,7 @@ struct SearchBar: View {
     //MARK: Body
     var body: some View {
         HStack {
-            searchButton
+            search
             searchBar
         }
         .padding(10)
@@ -32,14 +32,10 @@ struct SearchBar: View {
 //MARK: Layout
 extension SearchBar {
     
-    private var searchButton: some View {
-        Button {
-            onSearchTapped?()
-        } label: {
-            Image(systemName: "magnifyingglass")
-                .font(.title2)
-                .foregroundStyle(Color.theme.secondaryText)
-        }
+    private var search: some View {
+        Image(systemName: "magnifyingglass")
+            .font(.title2)
+            .foregroundStyle(Color.theme.secondaryText)
     }
     
     private var searchBar: some View {

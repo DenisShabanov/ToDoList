@@ -9,38 +9,47 @@ import Foundation
 import Combine
 
 final class HomeInteractor: HomeInteractorProtocol {
-    
-    //MARK: Properties
+
     var presenter: HomePresenter?
     private let notesService = NotesAPIService()
     private var cancellables = Set<AnyCancellable>()
     private let coreData = CoreDataService.shared
-    
-    // MARK:  Fetch Notes
+
+    // MARK: Fetch Notes
     func fetchNotes() {
-        let localNotes = coreData.fetchNotes()
-        
-        if !localNotes.isEmpty {
-            presenter?.didLoadNotes(localNotes)
-            return
-        }
-        
-        notesService.fetchNotes()
-            .sink(
-                receiveCompletion: { completion in
-                    if case .failure(let error) = completion {
-                        self.presenter?.didFailLoadingNotes(error)
-                    }
-                },
-                receiveValue: { notes in
-                    notes.forEach { self.coreData.addNote(note: $0) }
-                    self.presenter?.didLoadNotes(self.coreData.fetchNotes())
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+
+            let localNotes = self.coreData.fetchNotes()
+            if !localNotes.isEmpty {
+                DispatchQueue.main.async {
+                    self.presenter?.didLoadNotes(localNotes)
                 }
-            )
-            .store(in: &cancellables)
+                return
+            }
+
+            self.notesService.fetchNotes()
+                .subscribe(on: DispatchQueue.global(qos: .background))
+                .sink(receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        DispatchQueue.main.async {
+                            self.presenter?.didFailLoadingNotes(error)
+                        }
+                    }
+                }, receiveValue: { notes in
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        notes.forEach { self.coreData.addNote(note: $0) }
+                        let savedNotes = self.coreData.fetchNotes()
+                        DispatchQueue.main.async {
+                            self.presenter?.didLoadNotes(savedNotes)
+                        }
+                    }
+                })
+                .store(in: &self.cancellables)
+        }
     }
-    
-    // MARK:  Add Note
+
+    // MARK: Add Note
     func addNote(todo: String) {
         let newNote = Note(
             id: Int(Date().timeIntervalSince1970),
@@ -48,20 +57,47 @@ final class HomeInteractor: HomeInteractorProtocol {
             completed: false,
             createdAt: Date()
         )
-        coreData.addNote(note: newNote)
-        presenter?.didLoadNotes(coreData.fetchNotes())
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.coreData.addNote(note: newNote)
+            let notes = self?.coreData.fetchNotes() ?? []
+            DispatchQueue.main.async {
+                self?.presenter?.didLoadNotes(notes)
+            }
+        }
     }
-    
-    // MARK:  Update Note
+
+    // MARK: Update Note
     func updateNote(_ note: Note) {
-        coreData.updateNote(note)
-        presenter?.didLoadNotes(coreData.fetchNotes())
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.coreData.updateNote(note)
+            let notes = self?.coreData.fetchNotes() ?? []
+            DispatchQueue.main.async {
+                self?.presenter?.didLoadNotes(notes)
+            }
+        }
     }
-    
-    // MARK:  Delete Note
+
+    // MARK: Delete Note
     func deleteNote(_ note: Note) {
-        coreData.deleteNote(note)
-        presenter?.didLoadNotes(coreData.fetchNotes())
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.coreData.deleteNote(note)
+            let notes = self?.coreData.fetchNotes() ?? []
+            DispatchQueue.main.async {
+                self?.presenter?.didLoadNotes(notes)
+            }
+        }
     }
-    
+
+    // MARK: Search Notes
+    func searchNotes(with query: String) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            let allNotes = self.coreData.fetchNotes()
+            let filtered = query.isEmpty ? allNotes :
+                allNotes.filter { $0.todo.localizedCaseInsensitiveContains(query) }
+            DispatchQueue.main.async {
+                self.presenter?.didLoadNotes(filtered)
+            }
+        }
+    }
 }
