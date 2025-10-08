@@ -6,7 +6,7 @@
 //
 
 import CoreData
-import UIKit
+import SwiftUI
 
 final class CoreDataService {
     static let shared = CoreDataService()
@@ -25,41 +25,64 @@ final class CoreDataService {
         }
     }
     
+    private func backgroundContext() -> NSManagedObjectContext {
+        let context = container.newBackgroundContext()
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        return context
+    }
+    
     // MARK: Fetch Notes
     func fetchNotes() -> [Note] {
-        let fetchRequest: NSFetchRequest<CDNote> = CDNote.fetchRequest()
-        do {
-            let cdNotes = try context.fetch(fetchRequest)
-            return cdNotes.map { $0.toDomain() }
-        } catch {
-            print("Fetch error:", error)
-            return []
+        var result: [Note] = []
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let context = backgroundContext()
+        context.perform {
+            let request: NSFetchRequest<CDNote> = CDNote.fetchRequest()
+            do {
+                let cdNotes = try context.fetch(request)
+                result = cdNotes.map { $0.toDomain() }
+            } catch {
+                print("Fetch error:", error)
+            }
+            semaphore.signal()
         }
+        semaphore.wait()
+        return result
     }
     
     // MARK:  Add Note
     func addNote(note: Note) {
-        _ = note.toCoreData(in: context)
-        saveContext()
+        let context = backgroundContext()
+        context.performAndWait {
+            _ = note.toCoreData(in: context)
+            do { try context.save() } catch { print("Add note error:", error) }
+        }
     }
     
     // MARK:  Update Note
     func updateNote(_ note: Note) {
-        let fetchRequest: NSFetchRequest<CDNote> = CDNote.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", note.id)
-        if let cdNote = try? context.fetch(fetchRequest).first {
-            cdNote.update(from: note)
-            saveContext()
+        let context = backgroundContext()
+        context.performAndWait {
+            let request: NSFetchRequest<CDNote> = CDNote.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %d", note.id)
+            if let cdNote = try? context.fetch(request).first {
+                cdNote.update(from: note)
+                do { try context.save() } catch { print("Update error:", error) }
+            }
         }
     }
     
     // MARK:  Delete Note
     func deleteNote(_ note: Note) {
-        let fetchRequest: NSFetchRequest<CDNote> = CDNote.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", note.id)
-        if let cdNote = try? context.fetch(fetchRequest).first {
-            context.delete(cdNote)
-            saveContext()
+        let context = backgroundContext()
+        context.performAndWait {
+            let request: NSFetchRequest<CDNote> = CDNote.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %d", note.id)
+            if let cdNote = try? context.fetch(request).first {
+                context.delete(cdNote)
+                do { try context.save() } catch { print("Delete error:", error) }
+            }
         }
     }
     

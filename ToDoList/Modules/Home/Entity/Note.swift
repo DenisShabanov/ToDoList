@@ -11,7 +11,7 @@ struct TodoResponse: Decodable {
     let todos: [Note]
 }
 
-struct Note: Identifiable, Decodable {
+struct Note: Identifiable, Decodable, Equatable {
     let id: Int
     var todo: String
     var completed: Bool

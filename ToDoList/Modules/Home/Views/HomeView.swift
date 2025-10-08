@@ -52,6 +52,12 @@ struct HomeView: View {
             .onAppear {
                 presenter.viewDidLoad()
             }
+            .onChange(of: textField) { newValue in
+                presenter.searchNotes(with: newValue)
+            }
+            .onChange(of: adapter.notes) { newNotes in
+                print("Обновились заметки: \(newNotes.map { $0.todo })")
+            }
             .fullScreenCover(isPresented: $router.showingAddNote) {
                 AddNoteView { newNote in
                     router.dismiss(note: newNote)
@@ -77,9 +83,7 @@ extension HomeView {
                 .foregroundStyle(Color.theme.accent)
                 .fontWeight(.bold)
             
-            SearchBar(textField: $textField, onSearchTapped:  {
-                presenter.searchNotes(with: textField)
-            })
+            SearchBar(textField: $textField)
         }
     }
     
@@ -93,10 +97,10 @@ extension HomeView {
                             presenter.toggleNoteCompleted(note)
                         }
                     ),
-                    title: "\(note.id)",
-                    subtitle: note.todo,
-                    date: note.createdAt ?? Date(),
-                    onTap: {
+                                  title: "\(note.id)",
+                                  subtitle: note.todo,
+                                  date: note.createdAt ?? Date(),
+                                  onTap: {
                         presenter.updateNote(note)
                     }, onEdit: {
                         presenter.updateNote(note)
