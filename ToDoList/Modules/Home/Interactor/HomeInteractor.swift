@@ -9,17 +9,24 @@ import Foundation
 import Combine
 
 final class HomeInteractor: HomeInteractorProtocol {
-
-    var presenter: HomePresenter?
-    private let notesService = NotesAPIService()
+    
+    var presenter: HomePresenterProtocol?
+    private let notesService: NotesAPIServiceProtocol
+    private let coreData: CoreDataServiceProtocol
     private var cancellables = Set<AnyCancellable>()
-    private let coreData = CoreDataService.shared
-
+    
+    
+    init(coreData: CoreDataServiceProtocol = CoreDataService.shared,
+         notesService: NotesAPIServiceProtocol = NotesAPIService()) {
+        self.coreData = coreData
+        self.notesService = notesService
+    }
+    
     // MARK: Fetch Notes
     func fetchNotes() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
-
+            
             let localNotes = self.coreData.fetchNotes()
             if !localNotes.isEmpty {
                 DispatchQueue.main.async {
@@ -27,7 +34,7 @@ final class HomeInteractor: HomeInteractorProtocol {
                 }
                 return
             }
-
+            
             self.notesService.fetchNotes()
                 .subscribe(on: DispatchQueue.global(qos: .background))
                 .sink(receiveCompletion: { completion in
@@ -48,7 +55,7 @@ final class HomeInteractor: HomeInteractorProtocol {
                 .store(in: &self.cancellables)
         }
     }
-
+    
     // MARK: Add Note
     func addNote(todo: String) {
         let newNote = Note(
@@ -65,7 +72,7 @@ final class HomeInteractor: HomeInteractorProtocol {
             }
         }
     }
-
+    
     // MARK: Update Note
     func updateNote(_ note: Note) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -76,7 +83,7 @@ final class HomeInteractor: HomeInteractorProtocol {
             }
         }
     }
-
+    
     // MARK: Delete Note
     func deleteNote(_ note: Note) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -87,14 +94,14 @@ final class HomeInteractor: HomeInteractorProtocol {
             }
         }
     }
-
+    
     // MARK: Search Notes
     func searchNotes(with query: String) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             let allNotes = self.coreData.fetchNotes()
             let filtered = query.isEmpty ? allNotes :
-                allNotes.filter { $0.todo.localizedCaseInsensitiveContains(query) }
+            allNotes.filter { $0.todo.localizedCaseInsensitiveContains(query) }
             DispatchQueue.main.async {
                 self.presenter?.didLoadNotes(filtered)
             }

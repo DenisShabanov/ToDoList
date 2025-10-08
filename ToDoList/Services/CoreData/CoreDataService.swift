@@ -8,7 +8,7 @@
 import CoreData
 import SwiftUI
 
-final class CoreDataService {
+final class CoreDataService: CoreDataServiceProtocol {
     static let shared = CoreDataService()
     private let container: NSPersistentContainer
     
