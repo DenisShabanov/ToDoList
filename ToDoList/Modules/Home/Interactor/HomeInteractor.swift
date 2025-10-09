@@ -11,14 +11,17 @@ import Combine
 final class HomeInteractor: HomeInteractorProtocol {
 
     // MARK:  Public properties
+    
     var presenter: HomePresenterProtocol?
 
     // MARK:  Private properties
+    
     private let notesService: NotesAPIServiceProtocol
     private let coreData: CoreDataServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     
     // MARK:  Init
+    
     init(coreData: CoreDataServiceProtocol = CoreDataService.shared,
          notesService: NotesAPIServiceProtocol = NotesAPIService()) {
         self.coreData = coreData
@@ -26,6 +29,7 @@ final class HomeInteractor: HomeInteractorProtocol {
     }
     
     // MARK: Public Methods
+    
     func fetchNotes() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
@@ -59,7 +63,6 @@ final class HomeInteractor: HomeInteractorProtocol {
         }
     }
     
-    // MARK: Add Note
     func addNote(todo: String) {
         let newNote = Note(
             id: Int(Date().timeIntervalSince1970),
@@ -76,7 +79,6 @@ final class HomeInteractor: HomeInteractorProtocol {
         }
     }
     
-    // MARK: Update Note
     func updateNote(_ note: Note) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             self?.coreData.updateNote(note)
@@ -87,7 +89,6 @@ final class HomeInteractor: HomeInteractorProtocol {
         }
     }
     
-    // MARK: Delete Note
     func deleteNote(_ note: Note) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             self?.coreData.deleteNote(note)
@@ -98,7 +99,6 @@ final class HomeInteractor: HomeInteractorProtocol {
         }
     }
     
-    // MARK: Search Notes
     func searchNotes(with query: String) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
