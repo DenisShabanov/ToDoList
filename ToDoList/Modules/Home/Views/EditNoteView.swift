@@ -8,23 +8,30 @@
 import SwiftUI
 
 struct EditNoteView: View {
+    
     //MARK: Enviropment
+    
     @Environment(\.dismiss)
     private var dismiss
     
     //MARK: State
+    
     @State
     var note: Note
+
+    // MARK:  Public properties
     
     var onSave: (Note) -> Void
     
     //MARK: Body
+    
     var body: some View {
         content
     }
 }
 
 //MARK: Layout
+
 extension EditNoteView {
     
     private var content: some View {
@@ -63,6 +70,7 @@ extension EditNoteView {
 }
 
 //MARK: Preview
+
 #Preview {
     EditNoteView(note: Note(id: 1, todo: "Пример", completed: false, createdAt: Date()), onSave: {_ in })
 }
