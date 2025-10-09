@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 final class HomeInteractor: HomeInteractorProtocol {
-    
+
+    // MARK:  Properties
     var presenter: HomePresenterProtocol?
     private let notesService: NotesAPIServiceProtocol
     private let coreData: CoreDataServiceProtocol
