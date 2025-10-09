@@ -11,6 +11,7 @@ import SwiftUI
 final class CoreDataService: CoreDataServiceProtocol {
 
     // MARK:  Properties
+    
     static let shared = CoreDataService()
     private let container: NSPersistentContainer
     
@@ -26,14 +27,17 @@ final class CoreDataService: CoreDataServiceProtocol {
             }
         }
     }
-    // MARK:  Background Stream
+
+    // MARK:  Private Methods
+    
     private func backgroundContext() -> NSManagedObjectContext {
         let context = container.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }
     
-    // MARK: Fetch Notes
+    // MARK:  Public Methods
+    
     func fetchNotes() -> [Note] {
         var result: [Note] = []
         let semaphore = DispatchSemaphore(value: 0)
@@ -53,7 +57,6 @@ final class CoreDataService: CoreDataServiceProtocol {
         return result
     }
     
-    // MARK:  Add Note
     func addNote(note: Note) {
         let context = backgroundContext()
         context.performAndWait {
@@ -62,7 +65,6 @@ final class CoreDataService: CoreDataServiceProtocol {
         }
     }
     
-    // MARK:  Update Note
     func updateNote(_ note: Note) {
         let context = backgroundContext()
         context.performAndWait {
@@ -75,7 +77,6 @@ final class CoreDataService: CoreDataServiceProtocol {
         }
     }
     
-    // MARK:  Delete Note
     func deleteNote(_ note: Note) {
         let context = backgroundContext()
         context.performAndWait {
@@ -88,7 +89,6 @@ final class CoreDataService: CoreDataServiceProtocol {
         }
     }
     
-    //MARK: Share
     func shareNote(_ note: Note) {
         let activityVC = UIActivityViewController(activityItems: [note.todo], applicationActivities: nil)
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -97,7 +97,6 @@ final class CoreDataService: CoreDataServiceProtocol {
         }
     }
     
-    // MARK:  Save
     private func saveContext() {
         guard context.hasChanges else { return }
         do {
