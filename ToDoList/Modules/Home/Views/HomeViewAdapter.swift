@@ -10,8 +10,13 @@ import Combine
 
 
 final class HomeViewAdapter: ObservableObject, HomeViewProtocol {
+
+    // MARK:  Published properties
+
     @Published var notes: [Note] = []
     @Published var errorMessage: String?
+
+    // MARK:  Public methods
     
     func showNotes(_ notes: [Note]) {
         DispatchQueue.main.async {
