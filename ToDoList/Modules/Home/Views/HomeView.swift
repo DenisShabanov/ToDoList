@@ -14,7 +14,8 @@ protocol HomeViewProtocol: AnyObject {
 
 struct HomeView: View {
     
-    //MARK: State
+    //MARK: State properties
+    
     @State
     var textField: String = ""
     
@@ -22,12 +23,13 @@ struct HomeView: View {
     private var adapter: HomeViewAdapter
     
     //MARK: ObservedObject
+    
     @ObservedObject
     private var router: HomeRouter
-    
     private let presenter: HomePresenter
     
     //MARK: Init
+    
     init(adapter: HomeViewAdapter, presenter: HomePresenter, router: HomeRouter) {
         _adapter = StateObject(wrappedValue: adapter)
         self.presenter = presenter
@@ -35,6 +37,7 @@ struct HomeView: View {
     }
     
     //MARK: Body
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -74,6 +77,7 @@ struct HomeView: View {
 }
 
 //MARK: Layout
+
 extension HomeView {
     
     private var serchBarAndHeader: some View {
@@ -139,6 +143,7 @@ extension HomeView {
 }
 
 //MARK: Preview
+
 #Preview {
     HomeAssembly.build()
 }
