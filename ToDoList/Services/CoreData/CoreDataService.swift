@@ -9,6 +9,8 @@ import CoreData
 import SwiftUI
 
 final class CoreDataService: CoreDataServiceProtocol {
+
+    // MARK:  Properties
     static let shared = CoreDataService()
     private let container: NSPersistentContainer
     
@@ -24,7 +26,7 @@ final class CoreDataService: CoreDataServiceProtocol {
             }
         }
     }
-    
+    // MARK:  Background Stream
     private func backgroundContext() -> NSManagedObjectContext {
         let context = container.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
