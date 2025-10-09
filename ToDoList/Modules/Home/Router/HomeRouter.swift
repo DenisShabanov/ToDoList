@@ -9,9 +9,6 @@ import Foundation
 import SwiftUI
 import Combine
 
-import Foundation
-import SwiftUI
-
 final class HomeRouter: HomeRouterProtocol, ObservableObject {
     
     // MARK: - Published states
