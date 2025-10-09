@@ -11,13 +11,17 @@ import Combine
 
 final class HomeRouter: HomeRouterProtocol, ObservableObject {
     
-    // MARK: - Published states
+    // MARK:  Published states
+    
     @Published var showingEditNote: Note?
     @Published var showingAddNote: Bool = false
+
+    // MARK:  Pruvate properties
     
     private var onSaveAction: ((Note) -> Void)?
     
-    // MARK: - Share
+    // MARK:  Public Methods
+    
     func presentShareSheet(for note: Note) {
         let activityVC = UIActivityViewController(activityItems: [note.todo], applicationActivities: nil)
         
@@ -27,19 +31,16 @@ final class HomeRouter: HomeRouterProtocol, ObservableObject {
         }
     }
     
-    // MARK:  Show Add Note
     func showAddNoteSheet(onSave: @escaping (Note) -> Void) {
         onSaveAction = onSave
         showingAddNote = true
     }
     
-    // MARK:  Show Edit Note
     func showEditNoteSheet(note: Note, onSave: @escaping (Note) -> Void) {
         showingEditNote = note
         onSaveAction = onSave
     }
     
-    // MARK:  Dismiss
     func dismiss(note: Note? = nil) {
         if let note {
             onSaveAction?(note)
