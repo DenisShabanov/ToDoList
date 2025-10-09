@@ -9,60 +9,57 @@ import Foundation
 
 final class HomePresenter: HomePresenterProtocol {
 
-    // MARK:  Properties
+    // MARK:  Public properties
+    
     weak var view: HomeViewProtocol?
     var interactor: HomeInteractorProtocol?
     var router: HomeRouterProtocol?
+
+    // MARK:  Private properties
+    
     private var allNotes: [Note] = []
 
-    // MARK:  ViewDidload
+    // MARK:  Public Methods
+    
     func viewDidLoad() {
         interactor?.fetchNotes()
     }
     
-    // MARK:  DidLoadNotes
     func didLoadNotes(_ notes: [Note]) {
         allNotes = notes
         view?.showNotes(notes)
     }
 
-    // MARK:  DidFailLoadingNotes
     func didFailLoadingNotes(_ error: Error) {
         view?.showError(error.localizedDescription)
     }
 
-    // MARK:  ToggleNoteCompleted
     func toggleNoteCompleted(_ note: Note) {
         var updatedNote = note
         updatedNote.completed.toggle()
         interactor?.updateNote(updatedNote)
     }
     
-    // MARK:  Share
     func share(note: Note) {
         router?.presentShareSheet(for: note)
     }
 
-    // MARK:  DeleteNote
     func deleteNote(_ note: Note) {
         interactor?.deleteNote(note)
     }
 
-    // MARK:  UpdateNote
     func updateNote(_ note: Note) {
         router?.showEditNoteSheet(note: note) { [weak self] updatedNote in
             self?.interactor?.updateNote(updatedNote)
         }
     }
 
-    // MARK:  SearchNotes
     func searchNotes(with query: String) {
         let filtered = query.isEmpty ? allNotes :
         allNotes.filter { $0.todo.localizedCaseInsensitiveContains(query) }
         view?.showNotes(filtered)
     }
 
-    // MARK:  AddNoteTapped
     func addNoteTapped() {
         router?.showAddNoteSheet { [weak self] newNote in
             self?.interactor?.addNote(todo: newNote.todo)
