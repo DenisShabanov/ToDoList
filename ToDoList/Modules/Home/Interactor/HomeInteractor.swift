@@ -10,20 +10,22 @@ import Combine
 
 final class HomeInteractor: HomeInteractorProtocol {
 
-    // MARK:  Properties
+    // MARK:  Public properties
     var presenter: HomePresenterProtocol?
+
+    // MARK:  Private properties
     private let notesService: NotesAPIServiceProtocol
     private let coreData: CoreDataServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     
-    
+    // MARK:  Init
     init(coreData: CoreDataServiceProtocol = CoreDataService.shared,
          notesService: NotesAPIServiceProtocol = NotesAPIService()) {
         self.coreData = coreData
         self.notesService = notesService
     }
     
-    // MARK: Fetch Notes
+    // MARK: Public Methods
     func fetchNotes() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
