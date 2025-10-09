@@ -10,13 +10,17 @@ import SwiftUI
 struct NoteFieldView: View {
     
     //MARK: Binding
+    
     @Binding
     var isSelected : Bool
+    
     //MARK: State
+    
     @State
     private var showPopover = false
     
     //MARK: Properties
+    
     let title: String
     let subtitle: String
     let date: Date
@@ -26,6 +30,7 @@ struct NoteFieldView: View {
     var onDelete: () -> Void
     
     //MARK: Body
+    
     var body: some View {
         HStack(alignment: .top){
             stateButton
@@ -40,6 +45,7 @@ struct NoteFieldView: View {
 }
 
 //MARK: Layout
+
 extension NoteFieldView {
     
     private var stateButton: some View {
@@ -125,6 +131,7 @@ extension NoteFieldView {
 }
 
 //MARK: Preview
+
 #Preview {
     NoteFieldView(isSelected: .constant(false), title: "", subtitle: "", date: Date(), onTap: {}, onEdit: {}, onShare: {}, onDelete: {})
 }
